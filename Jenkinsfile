@@ -18,7 +18,7 @@ pipeline {
         }
         stage('deploy'){
              steps{
-                 sh 'echo pwd;docker images'
+                 sh 'echo $pwd; ls;docker images'
              }
         }
     }
