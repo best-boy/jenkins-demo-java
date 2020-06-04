@@ -18,7 +18,7 @@ pipeline {
         }
         stage('deploy'){
              steps{
-                 sh 'echo $pwd; ls;docker images;ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test'
+                 sh 'echo $pwd; ls;docker images;docker build -t ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test .;docker push ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test'
              }
         }
     }
