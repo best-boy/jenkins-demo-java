@@ -17,8 +17,12 @@ pipeline {
              }
         }
         stage('deploy'){
+            environment {
+                BITBUCKET_COMMON_CREDS_USR = credentials('docker-repository-username')
+                BITBUCKET_COMMON_CREDS_PSW = credentials('docker-repository-password')
+            }
              steps{
-                 sh 'echo $pwd; ls;docker images;docker build -t ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test .;docker push ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test'
+                 sh 'echo $pwd; ls;docker images;docker build -t ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test .; docker login --username=$BITBUCKET_COMMON_CREDS_USR ccr.ccs.tencentyun.com --password $BITBUCKET_COMMON_CREDS_PSW;docker push ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test'
              }
         }
     }
