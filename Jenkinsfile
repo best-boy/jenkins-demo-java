@@ -24,11 +24,11 @@ pipeline {
              steps{
                  sh  'echo $pwd'
                  sh  'echo ${NODE_NAME}'
-                 sh  'echo ${env.BUILD_NUMBER}'
-                 sh  'docker build -t ccr.ccs.tencentyun.com/zhangsanmu/api-blog:dev-${env.BUILD_NUMBER} .'
+                 sh  'echo ${BUILD_NUMBER}'
+                 sh  'docker build -t ccr.ccs.tencentyun.com/zhangsanmu/api-blog:dev-${BUILD_NUMBER} .'
                  sh  'docker login --username=$BITBUCKET_COMMON_CREDS_USR ccr.ccs.tencentyun.com --password $BITBUCKET_COMMON_CREDS_PSW'
-                 sh  'docker push ccr.ccs.tencentyun.com/zhangsanmu/api-blog:dev-${env.BUILD_NUMBER}'
-                 sh  'docker rmi ccr.ccs.tencentyun.com/zhangsanmu/api-blog:dev-${env.BUILD_NUMBER}'
+                 sh  'docker push ccr.ccs.tencentyun.com/zhangsanmu/api-blog:dev-${BUILD_NUMBER}'
+                 sh  'docker rmi ccr.ccs.tencentyun.com/zhangsanmu/api-blog:dev-${BUILD_NUMBER}'
              }
         }
     }
