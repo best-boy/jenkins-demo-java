@@ -1,8 +1,8 @@
-node{
+pipeline {
     agent {
         docker {
             image 'maven:3.6.1'
-            args '-v /root/.m2:/root/.m2'
+            args '-v /root/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
@@ -18,9 +18,7 @@ node{
         }
         stage('deploy'){
              steps{
-                 sh 'echo $pwd;ls'
-                 def customImage = docker.build("ccr.ccs.tencentyun.com/zhangsanmu/api-blog:test")
-                 customImage.push()
+                 sh 'echo pwd;docker images'
              }
         }
     }
