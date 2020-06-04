@@ -17,5 +17,10 @@ pipeline {
                  sh 'mvn test'
              }
         }
+        stage('deploy'){
+             steps{
+                 sh 'echo pwd;docker images'
+             }
+        }
     }
 }
